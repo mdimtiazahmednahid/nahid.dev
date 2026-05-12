@@ -1,166 +1,950 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MD IMTIAZ AHMED NAHID - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD. Imtiaz Ahmed Nahid | Portfolio</title>
+  <meta name="description" content="Premium portfolio of MD. Imtiaz Ahmed Nahid — Software Engineer, AIoT Innovator, Researcher, and Systems Strategist." />
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-solid: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(0, 0, 0, 0.08);
+      --dark: #050505;
+      --dark-soft: #111113;
+      --blue: #0071e3;
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --shadow-soft: 0 30px 80px rgba(0, 0, 0, 0.10);
+      --shadow-card: 0 18px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.045;
+      z-index: 0;
+      background-image: radial-gradient(#000 0.7px, transparent 0.7px);
+      background-size: 12px 12px;
+    }
+
+    .glow {
+      position: fixed;
+      width: 560px;
+      height: 560px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0, 113, 227, 0.22), transparent 62%);
+      filter: blur(18px);
+      top: -220px;
+      right: -160px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      width: min(960px, calc(100% - 32px));
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-radius: 999px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.09);
+    }
+
+    .nav-inner {
+      height: 58px;
+      padding: 0 20px 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: var(--text);
+      color: #fff !important;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 126px 0 64px;
+    }
+
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      min-height: 620px;
+      border-radius: 46px;
+      padding: clamp(34px, 5vw, 68px);
+      background: linear-gradient(145deg, rgba(255,255,255,0.86), rgba(255,255,255,0.46));
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(26px);
+      -webkit-backdrop-filter: blur(26px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -150px auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0, 113, 227, 0.18), transparent 68%);
+    }
+
+    .pill {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #30d158;
+      box-shadow: 0 0 0 6px rgba(48, 209, 88, 0.13);
+    }
+
+    h1 {
+      font-size: clamp(54px, 8vw, 104px);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      font-weight: 900;
+      margin-bottom: 28px;
+      max-width: 820px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #1d1d1f, #0071e3 58%, #7a5cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      max-width: 710px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.45;
+      margin-bottom: 36px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 13px 21px;
+      border-radius: 999px;
+      font-weight: 750;
+      font-size: 15px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 16px 34px rgba(0, 113, 227, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 44px rgba(0, 113, 227, 0.34);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.74);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      background: #fff;
+    }
+
+    .hero-panel {
+      border-radius: 46px;
+      background: #111;
+      color: white;
+      padding: 34px;
+      box-shadow: var(--shadow-soft);
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: -120px -120px auto auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,113,227,0.55), transparent 68%);
+      filter: blur(8px);
+    }
+
+    .panel-top,
+    .panel-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-label {
+      color: rgba(255,255,255,0.58);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .panel-title {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      max-width: 420px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .metric {
+      min-height: 134px;
+      border-radius: 26px;
+      padding: 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.13);
+      backdrop-filter: blur(20px);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      margin-bottom: 12px;
+    }
+
+    .metric span {
+      color: rgba(255,255,255,0.62);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 60px;
+      margin-bottom: 46px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.23em;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: 0.97;
+      letter-spacing: -0.07em;
+      font-weight: 900;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .glass-card {
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.68);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .about-card {
+      padding: clamp(28px, 5vw, 54px);
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .about-card h3 {
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      padding: 28px;
+      border-radius: 30px;
+      background: var(--surface-solid);
+      border: 1px solid var(--line);
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .project h3 {
+      font-size: 24px;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      color: var(--muted);
+    }
+
+    .project-tag {
+      width: fit-content;
+      border-radius: 999px;
+      background: #f2f2f4;
+      color: #52525b;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 26px;
+    }
+
+    .dark-wrap {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 48px;
+      padding: clamp(36px, 7vw, 76px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dark-wrap::after {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      right: -260px;
+      top: -260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,113,227,0.45), transparent 68%);
+    }
+
+    .dark-wrap .section-head,
+    .dark-wrap .skills-grid,
+    .dark-wrap .achievement-grid {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dark-wrap .eyebrow,
+    .dark-wrap .section-desc {
+      color: rgba(255,255,255,0.56);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .skill-box {
+      min-height: 285px;
+      border-radius: 30px;
+      padding: 25px;
+      background: rgba(255,255,255,0.075);
+      border: 1px solid rgba(255,255,255,0.13);
+    }
+
+    .skill-box h3 {
+      font-size: 21px;
+      margin-bottom: 18px;
+      letter-spacing: -0.035em;
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-list span {
+      padding: 11px 13px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.72);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .achievement {
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.075);
+      border: 1px solid rgba(255,255,255,0.13);
+    }
+
+    .achievement strong {
+      display: block;
+      font-size: 26px;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .achievement span {
+      color: rgba(255,255,255,0.58);
+      font-size: 14px;
+    }
+
+    .contact-card {
+      padding: clamp(32px, 6vw, 70px);
+      text-align: center;
+    }
+
+    .contact-card .section-desc {
+      margin: 0 auto;
+      max-width: 760px;
+    }
+
+    .contact-form {
+      max-width: 720px;
+      margin: 42px auto 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .input,
+    .textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      outline: none;
+      border-radius: 20px;
+      padding: 17px 18px;
+      font: inherit;
+      background: rgba(255,255,255,0.76);
+      color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .input:focus,
+    .textarea:focus {
+      border-color: rgba(0, 113, 227, 0.55);
+      box-shadow: 0 0 0 5px rgba(0, 113, 227, 0.11);
+      background: #fff;
+    }
+
+    .footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-shell,
+      .section-head,
+      .about-card,
+      .projects-grid,
+      .skills-grid,
+      .achievement-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-panel {
+        min-height: auto;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .nav {
+        top: 10px;
+        width: calc(100% - 20px);
+      }
+
+      .nav-inner {
+        height: 54px;
+        padding: 0 12px 0 18px;
+      }
+
+      .brand {
+        font-size: 16px;
+      }
+
+      .hero {
+        padding-top: 92px;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .dark-wrap {
+        border-radius: 32px;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      .metric-grid,
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <div class="container header-container">
-            <h1 class="logo">MD IMTIAZ AHMED NAHID</h1>
-            <p class="tagline">EXPLORER | LEARNER | INNOVATOR</p>
-            <nav class="main-nav">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Work Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </nav>
+  <div class="noise"></div>
+  <div class="glow"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand">Nahid.</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-copy reveal">
+          <div class="pill"><span class="dot"></span> Available for collaboration</div>
+          <h1>Engineering <span class="gradient-text">intelligent</span> systems.</h1>
+          <p class="hero-text">
+            I am MD. Imtiaz Ahmed Nahid — a software engineer, AIoT innovator, and research-driven systems strategist building automation, embedded intelligence, and operational technology platforms.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contact">Start a Conversation</a>
+            <a class="btn btn-secondary" href="mailto:mdimtiazahmednahid@gmail.com">Email Me</a>
+          </div>
         </div>
-    </header>
 
-    <main>
-        <section id="about" class="section">
-            <div class="container">
-                <h2>About Me</h2>
-                <div class="about-content">
-                    <p>An enthusiastic explorer and learner with a passion for programming and technology. From my academic career to hands-on experience as an intern and Jr. Software Engineer, I have consistently applied critical thinking and a growth mindset to solve complex problems. My work on the SelfProtect app and its Algorithmic Trust Ledger showcases my ability to research, document, and innovate. I am committed to continuous learning and eager to take on new challenges in software development.</p>
-                    <ul class="contact-list">
-                        <li><strong>Location:</strong> East-kazipara,Mirpur,Dhaka</li>
-                        <li><strong>Phone:</strong> +8801905417596</li>
-                        <li><strong>Email:</strong> mdimtiazahmednahid@gmaail.com</li>
-                        <li><strong>Website:</strong> <a href="https://nahidme.netlify.app/">nahidme.netlify.app/</a></li>
-                    </ul>
-                </div>
+        <aside class="hero-panel reveal">
+          <div class="panel-top">
+            <div class="panel-label">Portfolio Snapshot</div>
+            <h2 class="panel-title">AI, automation, IoT and execution systems.</h2>
+          </div>
+
+          <div class="panel-bottom">
+            <div class="metric-grid">
+              <div class="metric">
+                <strong>7+</strong>
+                <span>Major innovation and research projects</span>
+              </div>
+              <div class="metric">
+                <strong>2x</strong>
+                <span>National-level innovation recognition</span>
+              </div>
+              <div class="metric">
+                <strong>AIoT</strong>
+                <span>Embedded intelligence and automation</span>
+              </div>
+              <div class="metric">
+                <strong>OS</strong>
+                <span>Workflow and operational systems</span>
+              </div>
             </div>
-        </section>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-        <section id="skills" class="section">
-            <div class="container">
-                <h2>Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Programming Languages</h3>
-                        <ul>
-                            <li>Html, Css, Js</li>
-                            <li>C/C++, Python, PHP</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Core Skills</h3>
-                        <ul>
-                            <li>Research & Documentation</li>
-                            <li>Critical Thinking</li>
-                            <li>Creative Designs</li>
-                            <li>Leadership</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Technical Skills</h3>
-                        <ul>
-                            <li>Internet of Things (IoT)</li>
-                            <li>Embedded System</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="section">
-            <div class="container">
-                <h2>Work Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h3>Jr. Software Engineer, WinkyTech LTD</h3>
-                        <p class="period">2025</p>
-                        <ul>
-                            <li>Assisting supervisor(CTO) in Software Development</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Intern - SelfProtect App</h3>
-                        <p class="period">2023-2025</p>
-                        <ul>
-                            <li>Research Lead for SelfProtect App</li>
-                            <li>Maintain and Develop Pixel Perfect front-End</li>
-                            <li>Logical/case-study/Functional Documentation</li>
-                            <li>Renovated ATL(Algorithmic Trust Ledger) for authentication</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <div class="container">
-                <h2>Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>Natural Language to Braille Converter</h3>
-                        <p>First Bangladeshi system, awarded in National Science and Tech Fair.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>Digital Rail Management System (DRMS)</h3>
-                        <p>An awarded innovation for rail management.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>IoT based Safety System</h3>
-                        <p>An IoT-based safety system innovation.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>NodeLab (Virtual Lab)</h3>
-                        <p>A virtual lab for experiments.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <div class="container">
-                <h2>Contact Me</h2>
-                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="contact">
-                    <p class="hidden-field">
-                        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-                    </p>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 MD IMTIAZ AHMED NAHID. All Rights Reserved.</p>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-card glass-card reveal">
+          <div>
+            <div class="eyebrow">About</div>
+            <h3>Research-led builder with a systems-first mindset.</h3>
+          </div>
+          <div>
+            <p>
+              I founded HexagonLab as a private research and innovation lab focused on AI systems, AIoT, embedded infrastructure, intelligent workflow design, and scalable automation platforms.
+            </p>
+            <p>
+              My work combines software engineering, product thinking, research, embedded systems, data-driven planning, and execution architecture. I previously served as Chief Operating Officer at Winky Tech Limited, contributing to technical operations and software delivery.
+            </p>
+            <p>
+              I build practical systems that improve productivity, discipline, visibility, safety, and human-centered impact.
+            </p>
+          </div>
         </div>
-    </footer>
-    
-    <script src="script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Selected Work</div>
+            <h2 class="section-title">Projects that turn ideas into systems.</h2>
+          </div>
+          <p class="section-desc">
+            A portfolio of intelligent platforms, embedded systems, accessibility tools, automation products, and operational infrastructure concepts.
+          </p>
+        </div>
+
+        <div class="projects-grid reveal">
+          <article class="project">
+            <div>
+              <h3>Neuragent</h3>
+              <p>AI-driven operational intelligence and workforce management ecosystem for planning, tasks, KPIs, and execution visibility.</p>
+            </div>
+            <span class="project-tag">AI Operations</span>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>NeuraSync</h3>
+              <p>Connector-based synchronization infrastructure designed for intelligent integrations across platforms and workflows.</p>
+            </div>
+            <span class="project-tag">Integration System</span>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>Shadow AI</h3>
+              <p>AIoT-based intelligent safety and monitoring platform using embedded devices, sensors, and automated alerts.</p>
+            </div>
+            <span class="project-tag">AIoT Safety</span>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>AuxIoT Intelligent Audio</h3>
+              <p>Embedded audio streaming infrastructure using ESP architecture, web controls, and intelligent playback workflows.</p>
+            </div>
+            <span class="project-tag">Embedded Audio</span>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>Digital Rail Management System</h3>
+              <p>Smart railway monitoring and safety concept integrating automation, monitoring, and intelligent infrastructure.</p>
+            </div>
+            <span class="project-tag">Safety Tech</span>
+          </article>
+
+          <article class="project">
+            <div>
+              <h3>Madhyom</h3>
+              <p>Natural language to tactile/Braille accessibility innovation for inclusive communication and human-centered technology.</p>
+            </div>
+            <span class="project-tag">Accessibility</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="dark-wrap reveal">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Capabilities</div>
+              <h2 class="section-title">Built across software, AI and hardware.</h2>
+            </div>
+            <p class="section-desc">
+              My skillset is designed around building complete systems — from embedded devices and APIs to automation workflows, analytics, and execution platforms.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-box">
+              <h3>Software</h3>
+              <div class="skill-list">
+                <span>Python</span>
+                <span>PHP</span>
+                <span>JavaScript</span>
+                <span>HTML & CSS</span>
+                <span>REST APIs</span>
+              </div>
+            </div>
+
+            <div class="skill-box">
+              <h3>AI Systems</h3>
+              <div class="skill-list">
+                <span>AI Agents</span>
+                <span>Workflow Design</span>
+                <span>Automation</span>
+                <span>KPI Systems</span>
+                <span>Analytics</span>
+              </div>
+            </div>
+
+            <div class="skill-box">
+              <h3>Embedded</h3>
+              <div class="skill-list">
+                <span>ESP32</span>
+                <span>ESP8266</span>
+                <span>Arduino</span>
+                <span>Embedded C</span>
+                <span>I2S Audio</span>
+              </div>
+            </div>
+
+            <div class="skill-box">
+              <h3>Leadership</h3>
+              <div class="skill-list">
+                <span>Scrum</span>
+                <span>Agile Execution</span>
+                <span>Team Management</span>
+                <span>Product Strategy</span>
+                <span>Research</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="achievement-grid">
+            <div class="achievement">
+              <strong>Young Innovator</strong>
+              <span>National-level recognition in 2024 and 2025.</span>
+            </div>
+            <div class="achievement">
+              <strong>Science Club Advisor</strong>
+              <span>Guiding innovation, STEM, and technology activities.</span>
+            </div>
+            <div class="achievement">
+              <strong>AIUB Data Science</strong>
+              <span>BSc in Data Science, American International University-Bangladesh.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-card glass-card reveal">
+          <div class="eyebrow">Contact</div>
+          <h2 class="section-title">Let’s build something meaningful.</h2>
+          <p class="section-desc">
+            Open to software projects, research initiatives, intelligent systems, AI automation, embedded products, and technology collaborations.
+          </p>
+
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+            <input type="hidden" name="form-name" value="contact" />
+            <p style="display:none;">
+              <label>Do not fill this out: <input name="bot-field" /></label>
+            </p>
+
+            <div class="field-row">
+              <input class="input" type="text" name="name" placeholder="Your Name" required />
+              <input class="input" type="email" name="email" placeholder="Your Email" required />
+            </div>
+            <input class="input" type="text" name="subject" placeholder="Subject" />
+            <textarea class="textarea" name="message" placeholder="Tell me about your project or idea..." required></textarea>
+
+            <div class="actions" style="justify-content:center; margin-top: 8px;">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+              <a class="btn btn-secondary" href="mailto:mdimtiazahmednahid@gmail.com">Email Directly</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © <span id="year"></span> MD. Imtiaz Ahmed Nahid. Designed with a premium, minimal system aesthetic.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const revealItems = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
         }
-    </script>
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
 </body>
 </html>
